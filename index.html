@@ -1,0 +1,490 @@
+<!doctype html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- JQuery lib -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Icons library -->
+    <script src="https://kit.fontawesome.com/806bcb0a4c.js" crossorigin="anonymous"></script>
+    
+    <!-- Library to perform algebric operations -->
+    <script type="module" src="src/lib/nerdamer/nerdamer.core.js"></script>
+    <script type="module" src="src/lib/nerdamer/Algebra.js"></script>
+    <!-- <script type="module" src="src/lib/nerdamer/Calculus.js"></script> -->
+    <script type="module" src="src/lib/nerdamer/Solve.js"></script>
+    <script type="module" src="src/lib/nerdamer/Extra.js"></script>
+    
+    <!-- Index.js: Initial file to control all project operations -->
+    <script type="module" src="index.js"></script>
+    
+    <title>Simulador Sistemas Controle</title>
+  </head>
+
+  <body scroll="no">
+
+    <nav id="topbar" class="navbar navbar-expand-lg navbar-light system-topbar">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="https://ic.ufal.br" >
+          <img src="images/logo-ic.png" height="40" class="d-inline-block align-text-center">
+          Instituto de Computação
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item me-2">
+              <button id="btnNewSystem" class="btn btn-outline-light nav-link border-0 text-dark">
+                <i class="fas fa-file me-1"></i>
+                Novo
+              </button>
+            </li>
+            <li class="nav-item">
+              <button id="btnLoadFile" class="btn btn-outline-light nav-link border-0 text-dark">
+                <i class="fas fa-folder me-1"></i>
+                Abrir
+              </button>
+            </li>
+            <li class="nav-item dropdown">
+              <button class="btn btn-outline-light nav-link dropdown-toggle border-0 text-dark" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-save me-1"></i>
+                Salvar
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><button id="btnSaveJson" class="dropdown-item">Arquivo JSON</button></li>
+                <li><a id="btnSavePng" class="dropdown-item" href="#">PNG</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <button id="btnUndo" class="btn btn-outline-light nav-link border-0 text-dark disabled">
+                <i class="fas fa-undo me-1"></i>
+                Desfazer
+              </button>
+            </li>
+            <li class="nav-item">
+              <button id="btnRedo" class="btn btn-outline-light nav-link border-0 text-dark disabled">
+                <i class="fas fa-redo me-1"></i>
+                Refazer
+              </button>
+            </li>
+            <li class="nav-item">
+              <button id="btnCalculate" class="btn btn-outline-light nav-link border-0 text-dark">
+                <i class="fas fa-check me-1"></i>
+                Ver Resultados
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <canvas id="systemCanvas">
+      Your browser does not support canvas. <!-- If browser does not support canvas, this message will be displayed -->
+    </canvas>
+    <input id="openFileInput" type="file" style="display: none;" />
+
+  
+    <div id="componentsPanel" class="card mt-2 components-panel">
+      <div class="panel-section">
+        <div class="card-header">
+          <h6 class="header">Ferramentas</h6>
+        </div>
+        <div class="card-body">
+          <a id="btnMousePointer" class="btn btn-dark btn-tools position-relative" href="#">
+            <i class="fas fa-mouse-pointer"></i>
+          </a>
+          <a id="btnMove" class="btn btn-outline-dark btn-tools position-relative" href="#">
+            <i class="fas fa-hand-paper"></i>
+          </a>
+          <a id="btnConnectionCreator" class="btn btn-outline-dark btn-tools position-relative" href="#">
+            <i class="fas fa-sitemap"></i>
+          </a>
+          <a id="btnDeleteComponent" class="btn btn-outline-dark btn-component-tools position-relative disabled" href="#">
+            <i class="fas fa-eraser"></i>
+          </a>
+          <a id="btnRotateLeft" class="btn btn-outline-dark btn-component-tools position-relative disabled" href="#">
+            <i class="fas fa-undo"></i>
+          </a>
+          <a id="btnRotateRight" class="btn btn-outline-dark btn-component-tools position-relative disabled" href="#">
+            <i class="fas fa-redo"></i>
+          </a>
+        </div>
+      </div>
+      <div class="panel-section">
+        <div class="card-header border-top">
+          <h6 class="header">Componentes</h6>
+        </div>
+        <div class="card-body">
+          <ul class="nav nav-tabs nav-fill mb-1">
+            <li class="nav-item">
+              <a id="electricComponents" class="element-type-seletor nav-link active" aria-current="page" href="#" title="Elétrico">
+                <i class="tab-icon fas fa-bolt"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a id="mechanicComponents" class="element-type-seletor nav-link" href="#" title="Mecânico">
+                <i class="tab-icon fas fa-cogs"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a id="hydricComponents" class="element-type-seletor nav-link" href="#" title="Fluídico">
+                <i class="tab-icon fas fa-water"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a id="thermalComponents" class="element-type-seletor nav-link" href="#" title="Térmico">
+                <i class="tab-icon fas fa-thermometer-three-quarters"></i>
+              </a>
+            </li>
+          </ul>
+
+          <!-- COMPONENTES ELÉTRICOS -->
+          <div id="electricTab" class="component-tab active ps-2 pt-1">
+            <ul class="list-group list-group-horizontal-sm">
+              <a id="btnJoint" href="#" class="list-group-item component-button" aria-current="true">
+                <div class="element-container position-relative">
+                  <div class="position-absolute top-50 start-50 translate-middle w-100">
+                    <img class="position-relative start-50 top-0 translate-middle-x" src="images/joint.png"
+                      width="7">
+                    <div class="label-container pb-3 mt-2 w-100">
+                      <span class="position-absolute start-50 translate-middle-x w-100 text-center">Junta</label>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <a id="btnResistor" href="#" class="list-group-item component-button" aria-current="true" draggable="true">
+                <div class="element-container position-relative">
+                  <div class="position-absolute top-50 start-50 translate-middle w-100">
+                    <img class="position-relative start-50 top-0 translate-middle-x" src="images/electrical/resistor/resistor1.png"
+                      width="50">
+                    <div class="label-container pb-3 mt-2 w-100">
+                      <span class="position-absolute start-50 translate-middle-x w-100 text-center">Resistor</label>
+                    </div>
+                  </div>
+                </div>
+              </a>     
+            </ul>
+            <ul class="list-group list-group-horizontal-sm">
+              <a id="btnInductor" href="#" class="list-group-item component-button" aria-current="true">
+                <div class="element-container position-relative">
+                  <div class="position-absolute top-50 start-50 translate-middle w-100">
+                    <img class="position-relative start-50 top-0 translate-middle-x" src="images/electrical/inductor/inductor1.png"
+                      width="70">
+                    <div class="label-container pb-3 mt-2 w-100">
+                      <span class="position-absolute start-50 translate-middle-x w-100 text-center">Indutor</label>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <a id="btnCapacitor" href="#" class="list-group-item component-button" aria-current="true">
+                <div class="element-container position-relative">
+                  <div class="position-absolute top-50 start-50 translate-middle w-100">
+                    <img class="position-relative start-50 top-0 translate-middle-x"
+                      src="images/electrical/capacitor/capacitor2.png" height="30">
+                    <div class="label-container pb-3 mt-1 w-100">
+                      <span class="position-absolute start-50 translate-middle-x w-100 text-center">Capacitor</label>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </ul>
+            <ul class="list-group list-group-horizontal-sm">
+              <a id="btnVoltageSource" href="#" class="list-group-item component-button" aria-current="true">
+                <div class="element-container position-relative">
+                  <div class="position-absolute top-50 start-50 translate-middle w-100">
+                    <img class="position-relative start-50 top-0 translate-middle-x"
+                      src="images/electrical/voltage_source/voltage_source4.png" height="40">
+                    <div class="label-container pb-3 mt-1 w-100">
+                      <span class="position-absolute start-50 translate-middle-x w-100 text-center">Fonte Tensão</label>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <a id="btnCurrentSource" href="#" class="list-group-item component-button" aria-current="true">
+                <div class="element-container position-relative">
+                  <div class="position-absolute top-50 start-50 translate-middle w-100">
+                    <img class="position-relative start-50 top-0 translate-middle-x" src="images/electrical/current_source/current_source4.png" height="40">
+                    <div class="label-container pb-3 mt-1 w-100">
+                      <span class="position-absolute start-50 translate-middle-x w-100 text-center">Fonte Corrente</label>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </ul>
+          </div>
+
+          <!-- COMPONENTES MECÂNICOS -->
+          <div id="mechanicTab" class="component-tab ps-2 pt-1">
+            <ul class="list-group list-group-horizontal-sm">
+              <a id="btnJoint" href="#" class="list-group-item component-button" aria-current="true">
+                <div class="element-container position-relative">
+                  <div class="position-absolute top-50 start-50 translate-middle w-100">
+                    <img class="position-relative start-50 top-0 translate-middle-x" src="images/joint.png" width="7">
+                    <div class="label-container pb-3 mt-2 w-100">
+                      <span class="position-absolute start-50 translate-middle-x w-100 text-center">Junta</label>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </ul>
+          </div>
+
+          <!-- COMPONENTES HÍDRICOS -->
+          <div id="hydricTab" class="component-tab ps-2 pt-1">
+            <ul class="list-group list-group-horizontal-sm">
+              <a id="btnJoint" href="#" class="list-group-item component-button" aria-current="true">
+                <div class="element-container position-relative">
+                  <div class="position-absolute top-50 start-50 translate-middle w-100">
+                    <img class="position-relative start-50 top-0 translate-middle-x" src="images/joint.png" width="7">
+                    <div class="label-container pb-3 mt-2 w-100">
+                      <span class="position-absolute start-50 translate-middle-x w-100 text-center">Junta</label>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </ul>
+          </div>
+
+          <!-- COMPONENTES TÉRMICOS -->
+          <div id="thermalTab" class="component-tab ps-2 pt-1">
+            <ul class="list-group list-group-horizontal-sm">
+              <a id="btnJoint" href="#" class="list-group-item component-button" aria-current="true">
+                <div class="element-container position-relative">
+                  <div class="position-absolute top-50 start-50 translate-middle w-100">
+                    <img class="position-relative start-50 top-0 translate-middle-x" src="images/joint.png" width="7">
+                    <div class="label-container pb-3 mt-2 w-100">
+                      <span class="position-absolute start-50 translate-middle-x w-100 text-center">Junta</label>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="position-absolute bottom-0 system-bottombar">
+      <div class="container-fluid py-3 px-5">
+        <a class="navbar-brand" href="https://ic.ufal.br" style="float: left;">
+          <img src="images/logo-ufal.png" class="d-inline-block align-text-center institution-logo">
+          <div class="institution-name">
+            <span> Universidade</span> <br/>
+            <span> Federal de Alagoas</span>
+          </div>
+        </a>
+        <div class="position-absolute start-50 translate-middle">
+          <div class="ms-auto mb-lg-0 mt-5 pt-3">
+            <span>Trabalho de Conclusão de Curso</span><br/>
+          </div>
+        </div>
+        <div class="position-absolute end-0 pe-4 pt-1">
+          <div class="ms-auto mb-2 me-4 mb-lg-0 author-name">
+            <span>Marcos Vinícius Santos Costa </span><br />
+            <span>Engenharia de Computação</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:none;">
+      <img id="bypass_h" src="images/bypass_h.png">
+      <img id="bypass_v" src="images/bypass_v.png">
+      <img id="joint" src="images/joint.png">
+      <img id="resistor1" src="images/electrical/resistor/resistor1.png">
+      <img id="resistor2" src="images/electrical/resistor/resistor2.png">
+      <img id="resistor3" src="images/electrical/resistor/resistor3.png">
+      <img id="resistor4" src="images/electrical/resistor/resistor4.png">
+      <img id="capacitor1" src="images/electrical/capacitor/capacitor1.png">
+      <img id="capacitor2" src="images/electrical/capacitor/capacitor2.png">
+      <img id="capacitor3" src="images/electrical/capacitor/capacitor3.png">
+      <img id="capacitor4" src="images/electrical/capacitor/capacitor4.png">
+      <img id="inductor1" src="images/electrical/inductor/inductor1.png">
+      <img id="inductor2" src="images/electrical/inductor/inductor2.png">
+      <img id="inductor3" src="images/electrical/inductor/inductor3.png">
+      <img id="inductor4" src="images/electrical/inductor/inductor4.png">
+      <img id="voltage_source1" src="images/electrical/voltage_source/voltage_source1.png">
+      <img id="voltage_source2" src="images/electrical/voltage_source/voltage_source2.png">
+      <img id="voltage_source3" src="images/electrical/voltage_source/voltage_source3.png">
+      <img id="voltage_source4" src="images/electrical/voltage_source/voltage_source4.png">
+      <img id="current_source1" src="images/electrical/current_source/current_source1.png">
+      <img id="current_source2" src="images/electrical/current_source/current_source2.png">
+      <img id="current_source3" src="images/electrical/current_source/current_source3.png">
+      <img id="current_source4" src="images/electrical/current_source/current_source4.png">
+    </div>
+
+    <div class="modal fade" id="modalComponentAttr" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 id="modal-title" class="modal-title">Editar Componente</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <label for="id-input" class="form-label">Nome</label>
+              <div class="input-group mb-3 col col-6">
+                <input id="id-input" type="text" class="form-control" >
+              </div>
+            </div>
+            <div class="row">
+              <label for="value-input" class="form-label">Valor</label>
+              <div class="input-group mb-3 col col-6">
+                <input id="value-input" type="text" class="form-control" aria-describedby="unit-addon">
+                <span class="input-group-text" id="unit-addon2">
+                  <select id="select-unit" class="form-select" ></select>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button id="btnSave" type="button" class="btn btn-primary">Salvar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modalLinkGraph" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 id="modal-title" class="modal-title">Resultados</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+            <ul class="nav nav-pills nav-fill" role="tablist">
+              <li class="nav-item">
+                <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#linkGraphTab" type="button" role="tab" aria-controls="linkGraphTab" aria-selected="true">Grafo de Ligação</button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#a1MatrixTab" type="button" role="tab" aria-controls="a1MatrixTab" aria-selected="false">Matriz A1</button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#a2MatrixTab" type="button" role="tab" aria-controls="a2MatrixTab" aria-selected="false">Matriz A2</button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#a3MatrixTab" type="button" role="tab" aria-controls="a3MatrixTab" aria-selected="false">Matriz A3</button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#a4MatrixTab" type="button" role="tab" aria-controls="a4MatrixTab" aria-selected="false">Matriz A4</button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#a5MatrixTab" type="button" role="tab" aria-controls="a5MatrixTab" aria-selected="false">Matriz A5</button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#a5NMatrixTab" type="button" role="tab" aria-controls="a5NMatrixTab" aria-selected="false">Matriz A5N</button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#aMatrixTab" type="button" role="tab" aria-controls="aMatrixTab" aria-selected="false">Matriz A</button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#dfsTab" type="button" role="tab" aria-controls="dfsTab" aria-selected="false">DFS</button>
+              </li>
+            </ul>
+
+            <div class="tab-content" id="tabContent">
+              <div class="tab-pane fade show active" id="linkGraphTab" role="tabpanel" aria-labelledby="linkGraphTab">
+                <canvas id="linkGraphCanvas" style="top: 0px;">Your browser does not support canvas.</canvas>
+              </div>
+              <div class="tab-pane fade matrix-table-div" id="a1MatrixTab" role="tabpanel" aria-labelledby="a1MatrixTab">
+                <table id="a1MatrixTable" class="matrix-table"></table>
+              </div>
+              <div class="tab-pane fade matrix-table-div" id="a2MatrixTab" role="tabpanel" aria-labelledby="a2MatrixTab">
+                <table id="a2MatrixTable" class="matrix-table"></table>
+              </div>
+              <div class="tab-pane fade matrix-table-div" id="a3MatrixTab" role="tabpanel" aria-labelledby="a3MatrixTab">
+                <table id="a3MatrixTable" class="matrix-table"></table>
+              </div>
+              <div class="tab-pane fade matrix-table-div" id="a4MatrixTab" role="tabpanel" aria-labelledby="a4MatrixTab">
+                <table id="a4MatrixTable" class="matrix-table"></table>
+              </div>
+              <div class="tab-pane fade matrix-table-div" id="a5MatrixTab" role="tabpanel" aria-labelledby="a5MatrixTab">
+                <table id="a5MatrixTable" class="matrix-table"></table>
+              </div>
+              <div class="tab-pane fade matrix-table-div" id="a5NMatrixTab" role="tabpanel" aria-labelledby="a5NMatrixTab">
+                <table id="a5NMatrixTable" class="matrix-table"></table>
+              </div>
+              <div class="tab-pane fade matrix-table-div" id="aMatrixTab" role="tabpanel" aria-labelledby="aMatrixTab">
+                <table id="aMatrixTable" class="matrix-table"></table>
+              </div>
+              <div class="tab-pane fade" id="dfsTab" role="tabpanel" aria-labelledby="dfsTab">
+                <canvas id="dfsCanvas" style="top: 0px;">Your browser does not support canvas.</canvas>
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button id="btnEquations" type="button" class="btn btn-primary">Função de Transferência</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modalEquations" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 id="modal-title" class="modal-title">Equações do Sistema</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <label for="id-input" class="form-label">Variável de Entrada</label>
+              <div class="input-group mb-12 col col-12">
+                <select id="inputVariableSelect" class="form-select"></select>
+              </div>
+            </div>
+            <div class="row">
+              <label for="id-input" class="form-label">Variável de Saída</label>
+              <div class="input-group mb-12 col col-12">
+                <select id="outputVariableSelect" class="form-select"></select>
+              </div>
+            </div>
+            <div class="row">
+              <label for="id-input" class="form-label">Numerador</label>
+              <div class="input-group mb-12 col col-12">
+                <textarea id="id-txtnum" type="text" class="form-control" disabled>
+              </div>
+            </div>
+            <div class="row">
+              <label for="id-input" class="form-label">Denominador</label>
+              <div class="input-group mb-12 col col-12">
+                <textarea id="id-txtden" type="text" class="form-control" disabled>
+              </div>
+            </div>
+            <div class="row">
+              <label for="value-input" class="form-label">Valor Numérico</label>
+              <div class="input-group mb-3 col col-6">
+                <input id="id-txtval" type="text" class="form-control" aria-describedby="unit-addon" disabled>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button id="btnCalculateTF" type="button" class="btn btn-primary">Calcular</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>

@@ -1,0 +1,11 @@
+<!doctype html>
+<svg viewBox="1578.21 48.337 143 84" width="143" height="84">
+  <g id="g1951" transform="matrix(1, 0, 0, 1, 1298.210068, -221.079346)">
+    <circle r="28" cy="311.41666" cx="308" id="circle1914" style="opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3.5;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"></circle>
+    <path style="opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" d="m 308,339.41664 v 14" id="path1916"></path>
+    <path style="opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" d="m 308,283.41664 v -14" id="path1918"></path>
+    <text style="font: 26.6667px / 28px &quot;DejaVu Sans Mono&quot;; text-align: start; letter-spacing: 0px; word-spacing: 0px; writing-mode: lr-tb; text-anchor: start; fill: rgb(0, 0, 0); fill-opacity: 1; stroke: none; stroke-width: 1px; stroke-linecap: butt; stroke-linejoin: miter; stroke-opacity: 1; white-space: pre;" x="343" y="304.41666" id="text1928"><tspan id="tspan1926" x="343" y="304.41666">100mA</tspan></text>
+    <path id="path1940" d="m 308,332.41665 v -33.25" style="opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"></path>
+    <path id="path1942" d="m 308,290.41665 -5.25,10.5 h 10.5 z" style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"></path>
+  </g>
+</svg>

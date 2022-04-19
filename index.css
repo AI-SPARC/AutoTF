@@ -1,0 +1,151 @@
+html,
+body {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+}
+
+#systemCanvas {
+  position: absolute;
+  left: 0px;
+  top: 40px;
+  z-index: 0;
+}
+
+#linkGraphCanvas {
+  position: absolute;
+  left: 0px;
+  top: 60px !important;
+}
+
+.components-panel {
+  width: 20rem;
+  height: 80%;
+}
+
+.component-tab {
+  display: none;
+}
+
+.component-tab.active {
+  display: block !important;
+}
+
+.components-panel .panel-section {
+  z-index: 0;
+}
+
+.element-container {
+  width: 100px;
+  height: 60px;
+}
+
+.element-container .label-container {
+  width: fit-content;
+  height: 20px;
+}
+
+.element-container .label-container span {
+  font-size: 12px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.box {
+  border: 3px solid #666;
+  background-color: #ddd;
+  border-radius: 0.5em;
+  padding: 10px;
+  cursor: move;
+}
+
+.system-topbar {
+  background-color: #e3f2fd;
+}
+
+.system-bottombar {
+  background-color: #4a4e58;
+  height: 80px;
+  width: 100%;
+}
+
+.system-bottombar span {
+  z-index: 50000;
+  color: white;
+}
+
+.author-name {
+  line-height: 150%;
+  text-align: right;
+}
+
+.institution-logo {
+  height: 50px;
+  float: left;
+}
+
+.institution-name {
+  padding-top: 6px;
+  margin-left: 40px;
+  line-height: 90%;
+}
+
+.institution-name span {
+  font-size: 80%;
+}
+
+.nav-tabs {
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex-wrap: nowrap;
+}
+.nav-tabs .nav-link {
+  white-space: nowrap;
+}
+.matrix-table-div {
+  height: 100%;
+  width: 100%;
+  padding-top: 40px;
+  float: left;
+}
+.matrix-table {
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  overflow:hidden;
+  border-collapse:separate;
+  border: solid #ccc 1px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
+.matrix-table th {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid;
+  background-color: slategray;
+}
+
+.matrix-table td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid;
+}
+.matrix-table thead tr:first-child th:first-child {
+  border-start-start-radius: 15px;
+}
+.matrix-table thead tr:first-child th:last-child {
+  border-start-end-radius: 15px;
+}
+.matrix-table tbody tr:last-child th:first-child {
+  border-end-start-radius: 15px;
+}
+.matrix-table tbody tr:last-child td:last-child {
+  border-end-end-radius: 15px;
+}
