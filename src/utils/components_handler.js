@@ -49,7 +49,7 @@ export function checkSelectedDfsItems(mouseX, mouseY){
 }
 export function checkSelectedItems(mouseX, mouseY){
   unselectItems();
-  isSelected = checkSelectedComponent(mouseX, mouseY);
+  let isSelected = checkSelectedComponent(mouseX, mouseY);
   if(!isSelected){
     isSelected = checkSelectedConnection(mouseX, mouseY);
   }
@@ -66,7 +66,7 @@ export function checkSelectedItems(mouseX, mouseY){
 
 export function checkSelectedConnectors(mouseX, mouseY){
   unselectItems();
-  isSelected = false;
+  let isSelected = false;
   Component.list.forEach(function(c, i){
     let connSelected = null;
     if(c instanceof Component){

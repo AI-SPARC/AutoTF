@@ -100,7 +100,7 @@ function onCanvasDoubleClick(event){
   event.clientY = event.clientY - rect.top;
   if(SystemContext.toolSelected == 0){
     // SELECT tool is enabled
-    isSelected = checkSelectedItems(event.clientX, event.clientY);
+    let isSelected = checkSelectedItems(event.clientX, event.clientY);
     if (isSelected) { // SELECT tool is enabled
       if(SystemContext.itemSelected instanceof Component){ // If component is selected, open configurations modal
         let modal = new bootstrap.Modal(document.getElementById('modalComponentAttr'), {});
