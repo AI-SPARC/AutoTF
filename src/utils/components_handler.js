@@ -76,7 +76,7 @@ export function checkSelectedConnectors(mouseX, mouseY){
     }
     if(connSelected != null){
       SystemContext.itemSelected = connSelected;
-      connectorSelected = [parseInt(i), connSelected.id];
+      // connectorSelected = [parseInt(i), connSelected.id];
       isSelected = true;
     }
   });
@@ -130,7 +130,7 @@ export function generateComponent(name, x, y){
 }
 export function unselectItems() {
   SystemContext.itemSelected = null;
-  connectorSelected = null;
+  // connectorSelected = null;
   Component.list.forEach(function(c){
     c.unselect();
   })
