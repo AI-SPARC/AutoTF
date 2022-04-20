@@ -68,7 +68,7 @@ export function initializeDFSCanvas(){
 }
 
 export function generateGraphElements(dfs){
-    dfsKeys = Object.keys(dfs);
+    let dfsKeys = Object.keys(dfs);
     for(let i=0; i<dfsKeys.length; i++){
         DfsNode.findOrCreate(dfsKeys[i], dfs[dfsKeys[i]].object);
     }
