@@ -1,4 +1,4 @@
-import { Component } from "../components/component";
+import { Component } from "../components/component.js";
 export function generateComponentId(idInitial){
     let found = false;
     let number = 1;

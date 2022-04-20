@@ -1,11 +1,11 @@
-import { SystemContext } from "./system_context";
-import { Component } from "../components/component";
-import { checkSelectedItems, checkSelectedConnectors, generateComponent } from "../utils/components_handler";
-import { Connector } from "../components/connector";
-import { Joint } from "../components/joint";
-import { Connection } from "../components/connection";
-import { State } from "./state";
-import { unitPrefixes } from "../utils/unit_prefix";
+import { SystemContext } from "./system_context.js";
+import { Component } from "../components/component.js";
+import { checkSelectedItems, checkSelectedConnectors, generateComponent } from "../utils/components_handler.js";
+import { Connector } from "../components/connector.js";
+import { Joint } from "../components/joint.js";
+import { Connection } from "../components/connection.js";
+import { State } from "./state.js";
+import { unitPrefixes } from "../utils/unit_prefix.js";
 export function initializeCanvas(){
 
   // Change canvas width and height attributes to fill entire window

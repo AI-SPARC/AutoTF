@@ -1,10 +1,10 @@
 // This file contains code to deal with application context: Global variables and functions to draw, 
 // save and load system context.
 
-import { Component } from "../components/component";
-import { Connection } from "../components/connection";
-import { Joint } from "../components/joint";
-import { generateComponent } from "../utils/components_handler";
+import { Component } from "../components/component.js";
+import { Connection } from "../components/connection.js";
+import { Joint } from "../components/joint.js";
+import { generateComponent } from "../utils/components_handler.js";
 export class SystemContext{
 
   // System workspace variables: manage where circuits will be drawn

@@ -1,4 +1,4 @@
-import { DFSContext } from "../controls/dfs_context";
+import { DFSContext } from "../controls/dfs_context.js";
 
 export class DfsNode {
     constructor(id, object, x, y){

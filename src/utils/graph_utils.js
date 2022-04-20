@@ -1,8 +1,8 @@
-import { Connector } from "../components/connector";
-import { Joint } from "../components/joint";
-import { GraphArrow } from "../graph_components/graph_arrow";
-import { GraphComponent } from "../graph_components/graph_component";
-import { GraphNode } from "../graph_components/graph_node";
+import { Connector } from "../components/connector.js";
+import { Joint } from "../components/joint.js";
+import { GraphArrow } from "../graph_components/graph_arrow.js";
+import { GraphComponent } from "../graph_components/graph_component.js";
+import { GraphNode } from "../graph_components/graph_node.js";
 
 
 // BEGIN -> SYSTEM GRAPH------------------------------------------------------------------------------------------------------------

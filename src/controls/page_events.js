@@ -1,14 +1,14 @@
-import { Component } from "../components/component";
-import { Connection } from "../components/connection";
-import { Joint } from "../components/joint";
-import { deleteSelectedComponent, generateComponent, unselectItems } from "../utils/components_handler";
-import { saveFile } from "../utils/file_utils";
-import { checkFullyConnectedGraph, generateGraphFromSystem } from "../utils/graph_utils";
-import { DFSContext } from "./dfs_context";
-import { LinkGraphContext } from "./link_graph_context";
-import { MasonContext } from "./mason_context";
-import { State } from "./state";
-import { SystemContext } from "./system_context";
+import { Component } from "../components/component.js";
+import { Connection } from "../components/connection.js";
+import { Joint } from "../components/joint.js";
+import { deleteSelectedComponent, generateComponent, unselectItems } from "../utils/components_handler.js";
+import { saveFile } from "../utils/file_utils.js";
+import { checkFullyConnectedGraph, generateGraphFromSystem } from "../utils/graph_utils.js";
+import { DFSContext } from "./dfs_context.js";
+import { LinkGraphContext } from "./link_graph_context.js";
+import { MasonContext } from "./mason_context.js";
+import { State } from "./state.js";
+import { SystemContext } from "./system_context.js";
 
 export function initializePageEvents(){
   // BEGIN -> KEYBOARD EVENTS ---------------------------------------------------------------------------------------------------

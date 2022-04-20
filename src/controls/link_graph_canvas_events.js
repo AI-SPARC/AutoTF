@@ -1,12 +1,12 @@
-import { Joint } from "../components/joint";
-import { GraphArrow } from "../graph_components/graph_arrow";
-import { GraphComponent } from "../graph_components/graph_component";
-import { GraphNode } from "../graph_components/graph_node";
-import { checkSelectedGraphItems } from "../utils/components_handler";
-import { generateUUID } from "../utils/generators";
-import { LinkGraphContext } from "./link_graph_context";
-import { generateLinkGraphAux, getRelatedGroups } from "../utils/graph_utils";
-import { DFSContext } from "./dfs_context";
+import { Joint } from "../components/joint.js";
+import { GraphArrow } from "../graph_components/graph_arrow.js";
+import { GraphComponent } from "../graph_components/graph_component.js";
+import { GraphNode } from "../graph_components/graph_node.js";
+import { checkSelectedGraphItems } from "../utils/components_handler.js";
+import { generateUUID } from "../utils/generators.js";
+import { LinkGraphContext } from "./link_graph_context.js";
+import { generateLinkGraphAux, getRelatedGroups } from "../utils/graph_utils.js";
+import { DFSContext } from "./dfs_context.js";
 
 export function initializeLinkGraphCanvas(){
   LinkGraphContext.graphCanvas = document.getElementById('linkGraphCanvas');

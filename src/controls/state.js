@@ -1,6 +1,6 @@
 // Object to store each command sent by user. This class makes possible to implement undo and redo functions
 
-import { SystemContext } from "./system_context";
+import { SystemContext } from "./system_context.js";
 
 export class State{
 

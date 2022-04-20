@@ -1,18 +1,18 @@
-import { Component } from "../components/component";
-import { Connection } from "../components/connection";
-import { Capacitor } from "../components/electrical/capacitor";
-import { CurrentSource } from "../components/electrical/current_source";
-import { Inductor } from "../components/electrical/inductor";
-import { Resistor } from "../components/electrical/resistor";
-import { VoltageSource } from "../components/electrical/voltage_source";
-import { Joint } from "../components/joint";
-import { DFSContext } from "../controls/dfs_context";
-import { LinkGraphContext } from "../controls/link_graph_context";
-import { SystemContext } from "../controls/system_context";
-import { DfsNode } from "../dfs_components/dfs_node";
-import { DfsProcedure } from "../dfs_components/dfs_procedure";
-import { GraphComponent } from "../graph_components/graph_component";
-import { GraphNode } from "../graph_components/graph_node";
+import { Component } from "../components/component.js";
+import { Connection } from "../components/connection.js";
+import { Capacitor } from "../components/electrical/capacitor.js";
+import { CurrentSource } from "../components/electrical/current_source.js";
+import { Inductor } from "../components/electrical/inductor.js";
+import { Resistor } from "../components/electrical/resistor.js";
+import { VoltageSource } from "../components/electrical/voltage_source.js";
+import { Joint } from "../components/joint.js";
+import { DFSContext } from "../controls/dfs_context.js";
+import { LinkGraphContext } from "../controls/link_graph_context.js";
+import { SystemContext } from "../controls/system_context.js";
+import { DfsNode } from "../dfs_components/dfs_node.js";
+import { DfsProcedure } from "../dfs_components/dfs_procedure.js";
+import { GraphComponent } from "../graph_components/graph_component.js";
+import { GraphNode } from "../graph_components/graph_node.js";
 
 export function checkSelectedGraphItems(mouseX, mouseY){
   LinkGraphContext.itemSelected = null;

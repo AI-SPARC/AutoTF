@@ -1,5 +1,5 @@
-import { GraphArrow } from "../graph_components/graph_arrow";
-import { generateGraphElements, initializeLinkGraphCanvas } from "./link_graph_canvas_events";
+import { GraphArrow } from "../graph_components/graph_arrow.js";
+import { generateGraphElements, initializeLinkGraphCanvas } from "./link_graph_canvas_events.js";
 
 export class LinkGraphContext {
   

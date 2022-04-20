@@ -1,4 +1,4 @@
-import { LinkGraphContext } from "../controls/link_graph_context";
+import { LinkGraphContext } from "../controls/link_graph_context.js";
 
 export class GraphArrow {
   constructor(component1, component2){

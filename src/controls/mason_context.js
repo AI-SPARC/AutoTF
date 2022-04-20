@@ -1,5 +1,5 @@
-import { format, rationalize } from '../lib/math';
-import { DFSContext } from './dfs_context';
+import { format, rationalize } from '../lib/math.js';
+import { DFSContext } from './dfs_context.js';
 
 export class MasonContext {
     static directPaths = [];

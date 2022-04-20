@@ -1,4 +1,4 @@
-import { DFSContext } from "../controls/dfs_context";
+import { DFSContext } from "../controls/dfs_context.js";
 
 export class DfsProcedure {
     constructor(id, gain, x, y){

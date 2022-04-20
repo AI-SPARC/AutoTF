@@ -1,6 +1,6 @@
-import { CurrentSource } from "../components/electrical/current_source";
-import { VoltageSource } from "../components/electrical/voltage_source";
-import { LinkGraphContext } from "../controls/link_graph_context";
+import { CurrentSource } from "../components/electrical/current_source.js";
+import { VoltageSource } from "../components/electrical/voltage_source.js";
+import { LinkGraphContext } from "../controls/link_graph_context.js";
 
 export class GraphComponent {
   constructor(id, uuid, gain, value, classId, type, x, y){

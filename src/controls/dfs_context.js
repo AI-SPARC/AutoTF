@@ -1,8 +1,8 @@
-import { GraphArrow } from "../graph_components/graph_arrow";
-import { GraphComponent } from "../graph_components/graph_component";
-import { GraphNode } from "../graph_components/graph_node";
-import { getGraphCicles, kruskal } from "../utils/graph_utils";
-import { generateGraphElements, initializeDFSCanvas } from "./dfs_canvas_events";
+import { GraphArrow } from "../graph_components/graph_arrow.js";
+import { GraphComponent } from "../graph_components/graph_component.js";
+import { GraphNode } from "../graph_components/graph_node.js";
+import { getGraphCicles, kruskal } from "../utils/graph_utils.js";
+import { generateGraphElements, initializeDFSCanvas } from "./dfs_canvas_events.js";
 
 export class DFSContext {
     static graphCanvas = null;

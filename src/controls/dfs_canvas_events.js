@@ -1,8 +1,8 @@
-import { DFSContext } from "./dfs_context";
-import { DfsNode } from "../dfs_components/dfs_node";
-import { DfsArrow } from "../dfs_components/dfs_arrow";
-import { checkSelectedDfsItems } from "../utils/components_handler";
-import { DfsProcedure } from "../dfs_components/dfs_procedure";
+import { DFSContext } from "./dfs_context.js";
+import { DfsNode } from "../dfs_components/dfs_node.js";
+import { DfsArrow } from "../dfs_components/dfs_arrow.js";
+import { checkSelectedDfsItems } from "../utils/components_handler.js";
+import { DfsProcedure } from "../dfs_components/dfs_procedure.js";
 
 export function initializeDFSCanvas(){
     DFSContext.graphCanvas = document.getElementById('dfsCanvas');
