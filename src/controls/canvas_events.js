@@ -28,7 +28,7 @@ function onCanvasClick(event){
   if(SystemContext.toolSelected == 0){ // SELECT tool is enabled
     if(SystemContext.newComponent === null){ 
       // If new component is null, component creation is not enabled. Then select a component if mouse is over it
-      isSelected = checkSelectedItems(event.clientX, event.clientY);
+      let isSelected = checkSelectedItems(event.clientX, event.clientY);
       if (isSelected) {
         // Redraw canvas to show selected component
         SystemContext.draw();
@@ -50,7 +50,7 @@ function onCanvasClick(event){
     }
   }else if(SystemContext.toolSelected == 2){ // CONNECTION CREATION tool is enabled
     // Connection Creation tool only will select connectors and joints
-    isSelected = checkSelectedConnectors(event.clientX, event.clientY);
+    let isSelected = checkSelectedConnectors(event.clientX, event.clientY);
     if(isSelected){
       if(SystemContext.firstSelectedConnector == null){
         // If no other connector was selected previously, mark first connector as origin path
