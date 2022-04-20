@@ -10,7 +10,7 @@ import { GraphNode } from "../graph_components/graph_node.js";
 // Get components and connections list and generate a graph data structure to realize calculations on system
 export function generateGraphFromSystem(components, connections){
   // Initialize graph structure: adjacency list
-  graph = {}
+  let graph = {}
 
   // Generate nodes for each component in graph
   components.forEach(function(comp){
@@ -58,7 +58,7 @@ export function generateGraphFromSystem(components, connections){
 }
 
 export function checkFullyConnectedGraph(graph){
-  nodes = Object.keys(graph);
+  let nodes = Object.keys(graph);
   let fullyConnected = true;
 
   // Graph will be fully connected if all nodes can be visited from all nodes
@@ -158,7 +158,7 @@ function dfs(graph, node, v, visited){
 
 export function generateLinkGraphAux(linkGraphElements){
   // Initialize graph structure: adjacency list
-  graph = {}
+  let graph = {}
 
   // Generate nodes for each link component and link node in graph
   linkGraphElements.forEach(function(el){
@@ -191,7 +191,7 @@ export function generateLinkGraphAux(linkGraphElements){
 }
 
 export function getRelatedGroups(graph){
-  nodes = Object.keys(graph);
+  let nodes = Object.keys(graph);
   
   // initialize groups object
   let groups = {}

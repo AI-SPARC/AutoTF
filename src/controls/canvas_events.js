@@ -219,7 +219,7 @@ function onCanvasMouseDown(event){
     // If SELECT tool is enabled
     if(SystemContext.newComponent === null){
       // Verify if there is any selected item
-      isComponentSelected = checkSelectedItems(event.clientX, event.clientY);
+      let isComponentSelected = checkSelectedItems(event.clientX, event.clientY);
       if (isComponentSelected) {
         if(SystemContext.itemSelected instanceof Component || SystemContext.itemSelected instanceof Joint){
           // If component or joint is selected, its current position needs to be stored 
