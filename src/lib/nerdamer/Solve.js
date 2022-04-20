@@ -5,12 +5,15 @@
  * Source : https://github.com/jiggzson/nerdamer
  */
 /* global module */
+import {nerdamer} from './nerdamer.core.js';
+import './Calculus.js';
+import './Algebra.js';
 
-if((typeof module) !== 'undefined') {
-    var nerdamer = require('./nerdamer.core.js');
-    require('./Calculus.js');
-    require('./Algebra.js');
-}
+// if((typeof module) !== 'undefined') {
+//     var nerdamer = require('./nerdamer.core.js');
+//     require('./Calculus.js');
+//     require('./Algebra.js');
+// }
 
 (function () {
     //handle imports

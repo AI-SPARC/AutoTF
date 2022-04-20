@@ -8,11 +8,15 @@
 
 /* global module */
 
-if((typeof module) !== 'undefined') {
-    var nerdamer = require('./nerdamer.core.js');
-    require('./Calculus');
-    require('./Algebra');
-}
+import {nerdamer} from './nerdamer.core.js';
+import './Calculus.js';
+import './Algebra.js';
+
+// if((typeof module) !== 'undefined') {
+//     var nerdamer = require('./nerdamer.core.js');
+//     require('./Calculus');
+//     require('./Algebra');
+// }
 
 (function () {
     "use strict";
