@@ -32,8 +32,8 @@ export class MasonContext {
 
         let result;
         if(delta == '1'){
-            // let partialResult = format(rationalize(('('+sumPaths+')/('+delta+')')), { fraction: 'ratio'} ).replaceAll(' ','');
-            // result = nerdamer(partialResult);
+            let partialResult = math.format(math.rationalize(('('+sumPaths+')/('+delta+')')), { fraction: 'ratio'} ).replaceAll(' ','');
+            result = nerdamer(partialResult);
         }else{
             let num = nerdamer.simplify(sumPaths);
             let den = nerdamer.simplify(delta);
