@@ -8,13 +8,10 @@
 
 /* global module, Function */
 
-import {nerdamer} from './nerdamer.core.js';
-import './Calculus.js';
-
-// if((typeof module) !== 'undefined') {
-//     var nerdamer = require('./nerdamer.core.js');
-//     require('./Calculus.js');
-// }
+if((typeof module) !== 'undefined') {
+    var nerdamer = require('./nerdamer.core.js');
+    require('./Calculus.js');
+}
 
 (function () {
     "use strict";

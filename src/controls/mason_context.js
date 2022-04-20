@@ -1,4 +1,4 @@
-import { format, rationalize } from '../lib/math.js';
+// import { format, rationalize } from '../lib/math.js';
 import { DFSContext } from './dfs_context.js';
 
 export class MasonContext {
@@ -7,7 +7,7 @@ export class MasonContext {
     static cyclePathsOrders = {};
 
     static findDfsPaths(dfs, originNode, destinationNode){
-        const nerdamer = require('../lib/nerdamer/nerdamer.core');
+        // const nerdamer = require('../lib/nerdamer/nerdamer.core');
         this.directPaths = [];
         this.cyclePaths = {};
         let visited = {};
@@ -32,8 +32,8 @@ export class MasonContext {
 
         let result;
         if(delta == '1'){
-            let partialResult = format(rationalize(('('+sumPaths+')/('+delta+')')), { fraction: 'ratio'} ).replaceAll(' ','');
-            result = nerdamer(partialResult);
+            // let partialResult = format(rationalize(('('+sumPaths+')/('+delta+')')), { fraction: 'ratio'} ).replaceAll(' ','');
+            // result = nerdamer(partialResult);
         }else{
             let num = nerdamer.simplify(sumPaths);
             let den = nerdamer.simplify(delta);
@@ -81,7 +81,7 @@ export class MasonContext {
     }
 
     static setDirectPath(path, gain){
-        const nerdamer = require('../lib/nerdamer/nerdamer.core');
+        // const nerdamer = require('../lib/nerdamer/nerdamer.core');
         this.directPaths.push({
             path: path,
             gain: gain,
@@ -90,7 +90,7 @@ export class MasonContext {
     }
 
     static setCyclePath(path, dfs){
-        const nerdamer = require('../lib/nerdamer/nerdamer.core');
+        // const nerdamer = require('../lib/nerdamer/nerdamer.core');
         let cycleKey = Object.keys(this.cyclePaths).length+1;
         let lastNode = path[path.length-1];
 
@@ -122,7 +122,7 @@ export class MasonContext {
     }
 
     static setCyclesOrder(){
-        const nerdamer = require('../lib/nerdamer/nerdamer.core');
+        // const nerdamer = require('../lib/nerdamer/nerdamer.core');
         // Retrieve only first order cycles keys
         let firstOrderCycleKeys = Object.keys(this.cyclePaths).filter(key => this.cyclePaths[key].order == 1);
 

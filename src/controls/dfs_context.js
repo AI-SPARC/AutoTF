@@ -502,7 +502,7 @@ export class DFSContext {
             this.hasSolution = true;
             this.setVariablesFoundOnMatrix(variablesFound);
         }
-        const nerdamer = require('../lib/nerdamer/nerdamer.core');
+        // const nerdamer = require('../lib/nerdamer/nerdamer.core');
 
         if(variablesFound !== undefined){
             let tid = 0;
